@@ -1,6 +1,18 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+    id 'java'
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+application {
+    mainClass.set("org.example.tciesla.AppKt")
+}
+
+
 
 group 'org.example.tciesla'
 version '0.1.0-SNAPSHOT'
@@ -10,8 +22,8 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"
-    implementation "io.ktor:ktor-server-core:2.0.3"
-    implementation "io.ktor:ktor-server-netty:2.0.3"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.0'
+    implementation 'io.ktor:ktor-server-core:2.0.3'
+    implementation 'io.ktor:ktor-server-netty:2.0.3'
     implementation 'com.google.code.gson:gson:2.9.1'
 }
