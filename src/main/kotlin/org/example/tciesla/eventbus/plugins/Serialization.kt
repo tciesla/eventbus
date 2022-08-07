@@ -1,4 +1,4 @@
-package org.example.tciesla.plugins
+package org.example.tciesla.eventbus.plugins
 
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*

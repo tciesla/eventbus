@@ -1,9 +1,9 @@
-package org.example.tciesla
+package org.example.tciesla.eventbus
 
 import io.ktor.server.application.*
 import io.ktor.server.netty.*
-import org.example.tciesla.plugins.configureRouting
-import org.example.tciesla.plugins.configureSerialization
+import org.example.tciesla.eventbus.plugins.configureRouting
+import org.example.tciesla.eventbus.plugins.configureSerialization
 
 fun main(args: Array<String>) {
     EngineMain.main(args)

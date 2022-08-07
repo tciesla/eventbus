@@ -1,4 +1,4 @@
-package org.example.tciesla.models
+package org.example.tciesla.eventbus.models
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
