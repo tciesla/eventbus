@@ -12,7 +12,7 @@ services:
       - "27017:27017"
 
   app:
-    image: eventbus
+    build: .
     restart: always
     environment:
       MONGO_USERNAME: root
