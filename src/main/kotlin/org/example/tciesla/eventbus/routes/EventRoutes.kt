@@ -5,19 +5,19 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.example.tciesla.eventbus.eventRepository
 import org.example.tciesla.eventbus.models.Event
 
 fun Route.eventRouting() {
 
-    val eventsInMemory = mutableListOf<Event>()
-
     route("/") {
         get {
-            call.respond(eventsInMemory)
+            val events = eventRepository.findAll()
+            call.respond(events)
         }
         post {
             val event = call.receive<Event>()
-            eventsInMemory.add(event)
+            eventRepository.save(event)
             call.respond(HttpStatusCode.Created)
         }
     }
