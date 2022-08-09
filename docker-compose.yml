@@ -11,6 +11,16 @@ services:
     ports:
       - "27017:27017"
 
+  mongo-express:
+    image: mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: test123
+      ME_CONFIG_MONGODB_URL: mongodb://root:test123@mongo:27017/
+    ports:
+      - "8081:8081"
+
   app:
     build: .
     restart: always
