@@ -1,5 +1,7 @@
 package org.example.tciesla.eventbus
 
+import io.ktor.client.plugins.auth.*
+import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -7,6 +9,9 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.testing.*
 import org.example.tciesla.eventbus.models.Event
+import org.example.tciesla.eventbus.plugins.REALM_FULL
+import org.example.tciesla.eventbus.repositories.PASSWORD1
+import org.example.tciesla.eventbus.repositories.USERNAME1
 import java.time.OffsetDateTime
 import java.util.*
 import kotlin.test.Test
@@ -16,6 +21,8 @@ class EventRouteTests {
 
     @Test
     fun `should return empty array when there are no events`() = testApplication {
+        // given
+        val client = configureClient()
         // when
         val response = client.get("/")
         // then
@@ -26,10 +33,7 @@ class EventRouteTests {
     @Test
     fun `should return posted event`() = testApplication {
         // given
-        val client = client.config {
-            install(ContentNegotiation) { json() }
-        }
-
+        val client = configureClient()
         val event = Event(UUID.randomUUID(), OffsetDateTime.now(), "somePayload")
         val postResponse = client.post("/") {
             contentType(ContentType.Application.Json)
@@ -46,6 +50,18 @@ class EventRouteTests {
             "[{\"eventUUID\":\"" + event.eventUUID.toString() + "\",\"timestamp\":\""+ event.timestamp.toString() + "\",\"payload\":\"somePayload\"}]",
             getResponse.bodyAsText()
         )
+    }
+
+    private fun ApplicationTestBuilder.configureClient() = client.config {
+        install(ContentNegotiation) { json() }
+        install(Auth) {
+            digest {
+                realm = REALM_FULL
+                credentials {
+                    DigestAuthCredentials(username = USERNAME1, password = PASSWORD1)
+                }
+            }
+        }
     }
 
 }

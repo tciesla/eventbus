@@ -2,6 +2,7 @@ package org.example.tciesla.eventbus
 
 import io.ktor.server.application.*
 import io.ktor.server.netty.*
+import org.example.tciesla.eventbus.plugins.configureAuthentication
 import org.example.tciesla.eventbus.plugins.configureRouting
 import org.example.tciesla.eventbus.plugins.configureSerialization
 import org.example.tciesla.eventbus.repositories.EventRepository
@@ -17,6 +18,7 @@ fun main(args: Array<String>) {
 fun Application.module() {
     configureRouting()
     configureSerialization()
+    configureAuthentication()
     configureStorage()
 }
 
