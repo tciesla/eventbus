@@ -1,30 +1,22 @@
 package org.example.tciesla.eventbus
 
 import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import org.example.tciesla.eventbus.plugins.*
+import org.example.tciesla.eventbus.plugins.configureAuthentication
+import org.example.tciesla.eventbus.plugins.configureRouting
+import org.example.tciesla.eventbus.plugins.configureSerialization
+import org.example.tciesla.eventbus.plugins.userRepository
 import org.example.tciesla.eventbus.repositories.EventRepositoryInMemory
 import org.example.tciesla.eventbus.repositories.UserRepositoryInMemory
 
-// resources/application.conf
+@Suppress("unused") // resources/application.conf
 fun Application.test() {
     configureRouting()
     configureSerialization()
-    configureAuthentication()
     configureStorage()
-}
-
-fun Application.configureAuthentication() {
-    userRepository = UserRepositoryInMemory
-
-    install(Authentication) {
-        digest(AUTHENTICATION_DIGEST) {
-            realm = REALM_FULL
-            digestProvider { userName, _ -> userRepository.findCredentials(userName) }
-        }
-    }
+    configureAuthentication()
 }
 
 fun configureStorage() {
+    userRepository = UserRepositoryInMemory
     eventRepository = EventRepositoryInMemory
 }

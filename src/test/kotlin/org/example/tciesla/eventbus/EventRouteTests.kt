@@ -10,8 +10,8 @@ import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.testing.*
 import org.example.tciesla.eventbus.models.Event
 import org.example.tciesla.eventbus.plugins.REALM_FULL
-import org.example.tciesla.eventbus.repositories.PASSWORD1
-import org.example.tciesla.eventbus.repositories.USERNAME1
+import org.example.tciesla.eventbus.repositories.PASSWORD
+import org.example.tciesla.eventbus.repositories.USERNAME
 import java.time.OffsetDateTime
 import java.util.*
 import kotlin.test.Test
@@ -58,7 +58,7 @@ class EventRouteTests {
             digest {
                 realm = REALM_FULL
                 credentials {
-                    DigestAuthCredentials(username = USERNAME1, password = PASSWORD1)
+                    DigestAuthCredentials(username = USERNAME, password = PASSWORD)
                 }
             }
         }

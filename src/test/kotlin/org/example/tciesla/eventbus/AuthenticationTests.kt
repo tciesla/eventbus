@@ -8,8 +8,8 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.testing.*
 import org.example.tciesla.eventbus.plugins.REALM_FULL
-import org.example.tciesla.eventbus.repositories.PASSWORD1
-import org.example.tciesla.eventbus.repositories.USERNAME1
+import org.example.tciesla.eventbus.repositories.PASSWORD
+import org.example.tciesla.eventbus.repositories.USERNAME
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -30,7 +30,7 @@ class AuthenticationTests {
     @Test
     fun `should return 401(unauthorized) when failure authentication (incorrect username)`() = testApplication {
         // given
-        val client = withAuthentication(USERNAME1 + "typo", PASSWORD1)
+        val client = withAuthentication(USERNAME + "typo", PASSWORD)
         // when
         val response = client.get(SOME_ENDPOINT)
         // then
@@ -40,7 +40,7 @@ class AuthenticationTests {
     @Test
     fun `should return 401(unauthorized) when failure authentication (incorrect password)`() = testApplication {
         // given
-        val client = withAuthentication(USERNAME1, PASSWORD1 + "typo")
+        val client = withAuthentication(USERNAME, PASSWORD + "typo")
         // when
         val response = client.get(SOME_ENDPOINT)
         // then
@@ -50,7 +50,7 @@ class AuthenticationTests {
     @Test
     fun `should return 200(ok) when successful authentication`() = testApplication {
         // given
-        val client = withAuthentication(USERNAME1, PASSWORD1)
+        val client = withAuthentication(USERNAME, PASSWORD)
         // when
         val response = client.get(SOME_ENDPOINT)
         // then
