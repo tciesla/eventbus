@@ -1,3 +1,5 @@
 .gradle/
 .idea/
 build/
+gateway/cert.crt
+gateway/cert.key

@@ -21,6 +21,12 @@ services:
     ports:
       - "8081:8081"
 
+  gateway:
+    build: ./gateway
+    restart: always
+    ports:
+      - "8082:443"
+
   app:
     build: .
     restart: always
