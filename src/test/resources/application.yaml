@@ -1,0 +1,4 @@
+ktor:
+  application:
+    modules:
+      - org.example.tciesla.eventbus.TestApplicationKt.test

@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
     EngineMain.main(args)
 }
 
-@Suppress("unused") // resources/application.conf
+@Suppress("unused") // resources/application.yaml
 fun Application.module() {
     configureRouting()
     configureSerialization()

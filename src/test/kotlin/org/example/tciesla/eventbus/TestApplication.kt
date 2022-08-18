@@ -8,7 +8,7 @@ import org.example.tciesla.eventbus.plugins.userRepository
 import org.example.tciesla.eventbus.repositories.EventRepositoryInMemory
 import org.example.tciesla.eventbus.repositories.UserRepositoryInMemory
 
-@Suppress("unused") // resources/application.conf
+@Suppress("unused") // resources/application.yaml
 fun Application.test() {
     configureRouting()
     configureSerialization()
