@@ -4,10 +4,8 @@ import com.mongodb.ConnectionString
 import com.mongodb.client.MongoDatabase
 import org.litote.kmongo.KMongo
 
-private val mongoUsername = System.getenv("MONGO_USERNAME") ?: "root"
-private val mongoPassword = System.getenv("MONGO_PASSWORD") ?: "test123"
-private val mongoHost = System.getenv("MONGO_HOST") ?: "localhost"
-
-private val mongoClient = KMongo.createClient(ConnectionString("mongodb://$mongoUsername:$mongoPassword@$mongoHost"))
+private val mongoClient = KMongo.createClient(ConnectionString(
+    System.getenv("MONGO_URL") ?: "mongodb://root:test123@localhost"
+))
 
 val mongoDatabase: MongoDatabase = mongoClient.getDatabase("eventbus")

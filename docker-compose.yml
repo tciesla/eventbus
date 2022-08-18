@@ -31,8 +31,6 @@ services:
     build: .
     restart: always
     environment:
-      MONGO_USERNAME: root
-      MONGO_PASSWORD: test123
-      MONGO_HOST: mongo
+      MONGO_URL: "mongodb://root:test123@mongo"
     ports:
       - "8080:8080"
